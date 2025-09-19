@@ -8,6 +8,10 @@ import UIKit
 import SwiftUI
 
 struct GameView : View {
+    
+    @State private var leftPaddleY: CGFloat = 0
+    
+    
     var body: some View {
         GeometryReader { geo in
             let (W, H) = (geo.size.width, geo.size.height)
