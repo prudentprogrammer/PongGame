@@ -1,9 +1,5 @@
-//
 //  GameView.swift
-//  PongGame
-//
-//  Created by Arjun Bharadwaj on 9/19/25.
-//
+
 import UIKit
 import SwiftUI
 

@@ -30,6 +30,8 @@ struct PongView: View {
                    velocity: CGVector(dx: 100, dy: 50),
                    radius: 8)
     )
+    
+    private let loop = GameLoop()
 
     var body: some View {
         GeometryReader { geo in
@@ -62,6 +64,8 @@ struct PongView: View {
                                velocity: game.ball.velocity,
                                radius: game.ball.radius)
                 )
+            }.onAppear {
+                loop.start()
             }
         }
     }
