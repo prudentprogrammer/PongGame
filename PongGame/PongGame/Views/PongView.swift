@@ -48,6 +48,12 @@ struct PongView: View {
                 
                 // paddles
                 PaddleView(paddle: game.leftPaddle)
+                    .gesture(
+                        DragGesture()
+                            .onChanged { value in
+                                game.leftPaddle.position.y = value.location.y
+                            }
+                    )
                 PaddleView(paddle: game.rightPaddle)
                 // ball
                 BallView(ball: game.ball)
