@@ -20,4 +20,16 @@ public struct PongState {
     public var ball: Ball
 }
 
+public extension PongState {
+    mutating func update(dt: Double, arenaSize: CGSize) {
+        // distance = velocity * time
+        let (newVelocityX, newVelocityY) = (ball.velocity.dx * dt, ball.velocity.dy * dt)
+        ball.position.x += newVelocityX
+        ball.position.y += newVelocityY
+        
+        if ball.position.y - ball.radius < 0 || ball.position.y + ball.radius > arenaSize.height {
+            ball.velocity.dy *= -1
+        }
+    }
+}
 
