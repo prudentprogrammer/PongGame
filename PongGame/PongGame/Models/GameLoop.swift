@@ -4,7 +4,8 @@ import QuartzCore
 
 public final class GameLoop {
     private var displayLink: CADisplayLink?
-    
+    private var lastTimestamp: CFTimeInterval = 0
+    public var onTick: (Double) -> Void = { _ in }
     
     public init() {}
     
@@ -19,7 +20,11 @@ public final class GameLoop {
     }
     
     @objc func step(link: CADisplayLink) {
-        print("Timestamp = \(link.timestamp)")
+        if lastTimestamp == 0 { lastTimestamp = link.timestamp }
+        let dt = link.timestamp - lastTimestamp
+        lastTimestamp = link.timestamp
+        onTick(dt)
+        print("Last Timestamp = \(dt)")
     }
 }
 
