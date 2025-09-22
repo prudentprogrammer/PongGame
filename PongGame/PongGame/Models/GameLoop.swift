@@ -24,7 +24,7 @@ public final class GameLoop {
         let dt = link.timestamp - lastTimestamp
         lastTimestamp = link.timestamp
         onTick(dt)
-        print("Last Timestamp = \(dt)")
+        //print("Last Timestamp = \(dt)")
     }
 }
 

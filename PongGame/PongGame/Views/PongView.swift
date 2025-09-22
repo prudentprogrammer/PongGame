@@ -47,25 +47,22 @@ struct PongView: View {
                     .frame(width: 2, height: H)
                 
                 // paddles
-                PaddleView(
-                    paddle: Paddle(position: CGPoint(x: 30,
-                                                     y: halfH))
-                )
-                
-                PaddleView(
-                    paddle: Paddle(position: CGPoint(x: W - 30,
-                                                     y: halfH))
-                )
-                
+                PaddleView(paddle: game.leftPaddle)
+                PaddleView(paddle: game.rightPaddle)
                 // ball
-                BallView(
-                    ball: Ball(position: CGPoint(x: W / 2,
-                                                 y: halfH),
-                               velocity: game.ball.velocity,
-                               radius: game.ball.radius)
-                )
+                BallView(ball: game.ball)
             }.onAppear {
+                // initialize paddles and ball based on arena size
+               game.leftPaddle.position = CGPoint(x: 30, y: halfH)
+               game.rightPaddle.position = CGPoint(x: W - 30, y: halfH)
+               game.ball.position = CGPoint(x: W / 2, y: halfH)
+                loop.onTick =  { dt in
+                    game.update(dt: dt, arenaSize: geo.size)
+                }
                 loop.start()
+            }
+            .onDisappear {
+                loop.stop()
             }
         }
     }
