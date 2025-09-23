@@ -57,6 +57,8 @@ public extension PongState {
             ball.position = CGPoint(x: arenaSize.width/2, y: arenaSize.height/2)
             ball.velocity.dx *= -1
         }
+        
+        rightPaddle.position.y = ball.position.y
     }
 }
 
